@@ -1,0 +1,38 @@
+﻿@model SignUpViewModel
+@{
+    Layout = "_AuthLayout";
+}
+
+<div class="card">
+    <h2>Register Form</h2>
+    <form method="post" asp-controller="Account" asp-action="SignUp">
+        <label asp-for="@Model.FirstName" class="col-form-label"></label>
+        <input asp-for="@Model.FirstName" class="form form-control" placeholder="Enter your Firstname" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+        
+        
+        <label asp-for="@Model.LastName" class="col-form-label"></label>
+        <input asp-for="@Model.LastName" class="form form-control" placeholder="Enter your Lastname" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+
+        <label asp-for="@Model.Email" class="col-form-label"></label>
+        <input asp-for="@Model.Email" class="form-control" placeholder="Enter your email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+        <label asp-for="@Model.Password" class="col-form-label"></label>
+        <input asp-for="@Model.Password" type="password" class="form-control" placeholder="Enter your password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+
+        <label asp-for="@Model.ConfirmPassword" class="col-form-label"></label>
+        <input asp-for="@Model.ConfirmPassword" type="password" class="form-control" placeholder="Confirm your password" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+        <button type="submit">Register</button>
+    </form>
+    <div>Already have an account? <br /><a asp-action="LogIn" asp-controller="Account">Login here</a></div>
+</div>
+
+
+@section ValidationLibraries {
+    <partial name="_ValidationScriptsPartial" />
+}
