@@ -44,6 +44,12 @@ namespace Task.Controllers
                 products = products.Where(p => p.CreatedAt.Date <= search.EndDate.Value.Date);
             }
 
+            ViewBag.Name = search.ProductName;
+            ViewBag.MinPrice = search.MinPrice;
+            ViewBag.MaxPrice = search.MaxPrice;
+            ViewBag.FromDate = search.StartDate?.ToString("yyyy-MM-dd");
+            ViewBag.ToDate = search.EndDate?.ToString("yyyy-MM-dd");
+
             return View(products);
         }
 
@@ -108,6 +114,8 @@ namespace Task.Controllers
             {
                 return NotFound();
             }
+
+
             return View(product);
         }
 

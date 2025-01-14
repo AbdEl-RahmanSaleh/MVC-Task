@@ -17,19 +17,19 @@
 <form class="my-3" asp-action="Index" asp-controller="Product">
     <div class="row mb-4">
         <div class="col-md-2">
-            <input type="text" name="ProductName" class="form-control" placeholder="Search by Name" />
+            <input type="text" name="ProductName" class="form-control" placeholder="Search by Name" value="@ViewBag.Name" />
         </div>
         <div class="col-md-2">
-            <input type="number" name="MinPrice" class="form-control" placeholder="Min Price" step="0.01" />
+                <input type="number" name="MinPrice" class="form-control" placeholder="Min Price" step="0.01" value="@ViewBag.MinPrice" />
         </div>
         <div class="col-md-2">
-            <input type="number" name="MaxPrice" class="form-control" placeholder="Max Price" step="0.01" />
+                <input type="number" name="MaxPrice" class="form-control" placeholder="Max Price" step="0.01" value="@ViewBag.MaxPrice" />
         </div>
         <div class="col-md-2">
-            <input type="date" name="StartDate" class="form-control" />
+                <input type="date" name="StartDate" class="form-control" value="@ViewBag.FromDate" />
         </div>
         <div class="col-md-2">
-            <input type="date" name="EndDate" class="form-control" />
+                <input type="date" name="EndDate" class="form-control" value="@ViewBag.ToDate" />
         </div>
         <div class="col-md-1">
             <button type="submit" class="btn btn-primary">Filter</button>

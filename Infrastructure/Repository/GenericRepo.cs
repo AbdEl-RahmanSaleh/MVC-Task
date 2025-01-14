@@ -1,6 +1,7 @@
 ﻿using Core.Context;
 using Core.Entities;
 using Infrastructure.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,13 @@ namespace Infrastructure.Repository
         public IEnumerable<T> GetAll()
             => _context.Set<T>().ToList();
 
-        public T GetById(int? id)
-         => _context.Set<T>().FirstOrDefault(x => x.Id == id);
+        public  T GetById(int? id)
+        {
+            if (typeof(T) == typeof(Order))
+                return _context.Set<Order>().Include(x =>x.OrderItems).FirstOrDefault(x => x.Id == id) as T;
+            return _context.Set<T>().FirstOrDefault(x => x.Id == id);
+
+        }
 
         public int Add(T entity)
         {
@@ -37,8 +43,8 @@ namespace Infrastructure.Repository
 
         public void Delete(int? id)
         {
-            var product = _context.Products.FirstOrDefault(d => d.Id == id);
-            product.IsDeleted = true;
+            var x =  _context.Set<T>().FirstOrDefault(d => d.Id == id);
+            x.IsDeleted = true;
             _context.SaveChanges();
         }
 

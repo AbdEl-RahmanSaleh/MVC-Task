@@ -22,6 +22,7 @@ namespace Task
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IGenericRepo<Product>,GenericRepo<Product>>();
+            builder.Services.AddScoped<IGenericRepo<Order>,GenericRepo<Order>>();
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
             {
                 opt.Password.RequireDigit = true;

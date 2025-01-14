@@ -1,0 +1,94 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using Core.Entities
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Order
+@{
+    ViewBag.Title = "Create Order";
+}
+
+<h2>Create New Order</h2>
+<div id="alertMessage" class="alert alert-danger d-none" role="alert"></div>
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-action="Create" asp-controller="Order"  method="post">
+    <div class="mb-3">
+        <label>Customer Name</label>
+        <input asp-for="CustomerName" class="form-control" required />
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <label>Product</label>
+            <select id="productDropdown" class="form-control">
+                <option value="">-- Select Product --</option>
+                @foreach (var product in ViewBag.Products as SelectList)
+                {
+                    <option value="@product.Value">@product.Text</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label>Price</label>
+            <input type="text" id="productPrice" class="form-control"  readonly />
+        </div>
+
+        <div class="col-md-2">
+            <label>Quantity</label>
+            <input type="number" id="productQuantity" class="form-control" min="1" value="1" />
+        </div>
+
+        <div class="col-md-2">
+            <label>Total</label>
+            <input type="text" id="productTotal" class="form-control" readonly />
+        </div>
+
+        <div class="col-md-3 d-flex align-items-end">
+            <button type="button" id="addProductBtn" class="btn btn-primary w-100">Add Product</button>
+            <button type="button" id="saveProductBtn" style="display:none;" class="btn btn-success w-100">Save Product</button>
+        </div>
+    </div>
+
+    <hr />
+
+    <h4>Order Items</h4>
+    <table class="table table-bordered" id="orderItemsTable">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div id="orderTotal">
+        <strong>Total: $<span id="totalAmount">0.00</span></strong>
+    </div>
+    <button type="submit" class="btn btn-success">Save Order</button>
+    <a asp-action="Index" class="btn btn-success">Back To list</a>
+</form>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/createorder.js"></script>
+
+}

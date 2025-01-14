@@ -24,6 +24,11 @@
             </div>
 
             <div class="mb-3">
+            <img src="~/files/images/@Model.ImageName" class="img-thumbnail rounded-circle" style="width:200px; height:200px; object-fit:cover;" alt="@Html.DisplayFor(x  => Model.Name)">
+            </div>
+
+
+            <div class="mb-3">
                 <label asp-for="@Model.Image" class="col-form-label">Product Image</label>
                 <input asp-for="@Model.Image" type="file" class="form-control" />
                 <span asp-validation-for="Image" class="text-danger"></span>

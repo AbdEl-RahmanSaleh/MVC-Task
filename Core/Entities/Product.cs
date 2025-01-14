@@ -18,7 +18,6 @@ namespace Core.Entities
         public double price { get; set; }
         public string? ImageName { get; set; }
 
-        public bool IsDeleted { get; set; }
 
     }
 }
